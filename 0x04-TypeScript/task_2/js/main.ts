@@ -55,3 +55,17 @@ function createEmployee(salary: number | string): Director | Teacher {
 console.log(createEmployee(200) instanceof Teacher); // true
 console.log(createEmployee(1000) instanceof Director); // true
 console.log(createEmployee("$500") instanceof Director); // true
+
+// Define isDirector type predicate
+function isDirector(employee: Director | Teacher): employee is Director {
+  return employee instanceof Director;
+}
+
+// Define executeWork function
+function executeWork(employee: Director | Teacher): void {
+  if (isDirector(employee)) {
+    console.log(employee.workDirectorTasks());
+  } else {
+    console.log(employee.workTeacherTasks());
+  }
+}
